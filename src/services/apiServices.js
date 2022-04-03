@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// const BASE_URL = 'https://62015ab3fdf50900172499bb.mockapi.io/v1';
+// const BASE_URL = 'https://connections-api.herokuapp.com';
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 const API_ENDPOINT = '/contacts';
 

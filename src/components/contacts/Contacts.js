@@ -12,24 +12,23 @@ import Section from '../common/section/Section';
 import Block from 'components/common/block/Block';
 import { BlockWrapper } from './Contacts.styled';
 
-const { getItems } = contactsOperations;
-
-const { getContacts, getError } = contactsSelectors;
-
 const Contacts = () => {
-  const contacts = useSelector(getContacts);
-  const error = useSelector(getError);
+  const contacts = useSelector(contactsSelectors.getContacts);
+  const filter = useSelector(contactsSelectors.getFilter);
+  const error = useSelector(contactsSelectors.getError);
   const isLoadingUser = useSelector(authSelectors.getLoadingUser);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getItems());
+    dispatch(contactsOperations.getItems());
   }, [dispatch]);
 
   if (isLoadingUser) {
     return <div>Загрузка</div>;
   }
+
+  const isFilterShow = contacts?.length > 1 || filter;
 
   return (
     <Section titleLevel="h2" title="Contacts viewer and editor" isHidden>
@@ -38,7 +37,7 @@ const Contacts = () => {
           <ContactsForm />
         </Block>
         <Block subTitle="Contacts view">
-          {contacts?.length > 1 && <Filter />}
+          {isFilterShow && <Filter />}
           {contacts?.length ? <ContactsList /> : <EmptyContactsNotify />}
           {error && <div>Somesing went wrong</div>}
         </Block>
