@@ -1,5 +1,4 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { authSelectors } from 'redux/auth';
 import { useEffect } from 'react';
 import { contactsSelectors, contactsOperations } from '../../redux/contacts';
 
@@ -16,17 +15,12 @@ const Contacts = () => {
   const contacts = useSelector(contactsSelectors.getContacts);
   const filter = useSelector(contactsSelectors.getFilter);
   const error = useSelector(contactsSelectors.getError);
-  const isLoadingUser = useSelector(authSelectors.getLoadingUser);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(contactsOperations.getItems());
   }, [dispatch]);
-
-  if (isLoadingUser) {
-    return <div>Загрузка</div>;
-  }
 
   const isFilterShow = contacts?.length > 1 || filter;
 

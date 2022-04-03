@@ -21,7 +21,7 @@ import contactsReducer from './contacts/contacts-slice';
 const persistAuthConfig = {
   key: 'local-token',
   storage,
-  whitelist: ['token', 'refreshToken'],
+  whitelist: ['token'],
 };
 
 const persistContactsConfig = {

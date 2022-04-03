@@ -1,31 +1,31 @@
 import axios from 'axios';
 
-// const BASE_URL = 'https://connections-api.herokuapp.com';
-const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
 const API_ENDPOINT = '/contacts';
 
-export const getContacts = async localId => {
-  const res = await axios.get(`${BASE_URL}/${localId}${API_ENDPOINT}.json`);
-  return res.statusText === 'OK'
-    ? res.data
-    : Promise.reject(new Error(res.statusText));
+export const getContacts = async () => {
+  try {
+    const res = await axios.get(`${API_ENDPOINT}`);
+    return res.data;
+  } catch (error) {
+    return Promise.reject(new Error(error));
+  }
 };
 
-export const addContact = async (localId, contact) => {
-  const res = await axios.post(
-    `${BASE_URL}/${localId}${API_ENDPOINT}.json`,
-    contact,
-  );
-  return res.statusText === 'OK'
-    ? res.data
-    : Promise.reject(new Error(res.statusText));
+export const addContact = async contact => {
+  try {
+    const res = await axios.post(`${API_ENDPOINT}`, contact);
+    return res.data;
+  } catch (error) {
+    return Promise.reject(new Error(error));
+  }
 };
 
-export const deleteContact = async (localId, id) => {
-  const res = await axios.delete(
-    `${BASE_URL}/${localId}${API_ENDPOINT}/${id}.json`,
-  );
-  return res.statusText === 'OK'
-    ? res.data
-    : Promise.reject(new Error(res.statusText));
+export const deleteContact = async id => {
+  try {
+    const res = await axios.delete(`${API_ENDPOINT}/${id}`);
+    return res.data;
+  } catch (error) {
+    return Promise.reject(new Error(error));
+  }
 };

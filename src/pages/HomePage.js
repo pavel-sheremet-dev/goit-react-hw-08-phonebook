@@ -24,7 +24,7 @@ const HomePage = () => {
             </>
           ) : (
             <>
-              <span>my friend. Nice to meet You on our service.</span>
+              <span>my friend. Nice to meet you on our service.</span>
               <NavLink className="in-text-link" to={'/sign-up'}>
                 {'\u00A0'}SIGN UP{'\u00A0'}
               </NavLink>

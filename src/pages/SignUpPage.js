@@ -12,7 +12,7 @@ import { ButtonStyled } from 'components/common/Button/Buttonstyled';
 import Section from 'components/common/section/Section';
 
 const SignUpPage = () => {
-  const [displayName, setDisplayName] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
@@ -27,11 +27,11 @@ const SignUpPage = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    const credentials = { displayName, email, password };
+    const credentials = { name, email, password };
     dispatch(authOperations.signUp(credentials));
   };
 
-  const isDisabled = !displayName || !email || !password || loading;
+  const isDisabled = !name || !email || !password || loading;
 
   return (
     <Section titleLevel="h2" title="Sign up page" isHidden>
@@ -46,8 +46,8 @@ const SignUpPage = () => {
             pattern="[A-Za-zА-Яа-яґҐЁёІіЇїЄє'’ʼ\s-]{2,20}"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
-            onChange={e => setDisplayName(e.target.value)}
-            value={displayName}
+            onChange={e => setName(e.target.value)}
+            value={name}
             placeholder="Enter your name"
             autoComplete="off"
           />

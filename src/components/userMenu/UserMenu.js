@@ -1,6 +1,6 @@
 import { LogOutBtn } from 'components/common/Button/Buttonstyled';
 import { useSelector, useDispatch } from 'react-redux';
-import { authSelectors, signOut } from 'redux/auth';
+import { authSelectors, authOperations } from 'redux/auth';
 import { UserMenuWrapper } from './UserMenu.styled';
 import { MdOutlineLogout } from 'react-icons/md';
 
@@ -9,7 +9,7 @@ const UserMenu = () => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch(signOut());
+    dispatch(authOperations.signOut());
   };
 
   return (
